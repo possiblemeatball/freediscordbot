@@ -1,0 +1,13 @@
+when:
+  - event: push
+    branch:
+      exclude: main
+
+steps:
+  - name: docker build
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      platforms: linux/amd64
+      repo: git.manthrowshat.net/${CI_REPO_OWNER}/freediscordbot
+      registry: git.manthrowshat.net
+      dry_run: true

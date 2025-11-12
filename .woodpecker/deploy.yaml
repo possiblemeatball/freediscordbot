@@ -1,0 +1,15 @@
+when:
+  - event: push
+    branch: main
+
+steps:
+  - name: publish docker image
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      platforms: linux/amd64
+      repo: git.manthrowshat.net/${CI_REPO_OWNER}/freediscordbot
+      registry: git.manthrowshat.net
+      tags: latest
+      username: ${CI_REPO_OWNER}
+      password:
+        from_secret: cb_token
